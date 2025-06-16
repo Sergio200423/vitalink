@@ -16,9 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-     path('', include('listnutricionista.urls')) #Le permitimos saber cuales son las urls de la app main
+    path('', include('listnutricionista.urls')), #Le permitimos saber cuales son las urls de la app main
+    path('mensajes/', include('mensajeria.urls', namespace='mensajeria')),
+    path('accounts/', include('django.contrib.auth.urls')),
+
 ]

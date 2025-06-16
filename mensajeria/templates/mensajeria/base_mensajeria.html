@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mensajería - VitaLink{% endblock %}</title>
+    
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Estilos principales de VitaLink -->
+    <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+    
+    <!-- Estilos específicos de mensajería -->
+    <link rel="stylesheet" href="{% static 'mensajeria/css/mensajeria.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- Header de VitaLink -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="{% url 'main:index' %}" style="text-decoration: none; color: inherit;">
+                        <h2>VitaLink</h2>
+                        <span class="logo-tagline">Conectando Vida y Bienestar</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="{% url 'main:index' %}#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="{% url 'main:index' %}#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="{% url 'main:index' %}#productos" class="nav-link">Productos</a></li>
+                    <li><a href="{% url 'main:index' %}#nutricionistas" class="nav-link">Nutricionistas</a></li>
+                    <li><a href="{% url 'mensajeria:lista_conversaciones' %}" class="nav-link active">
+                        <i class="fas fa-comments"></i> Mensajes
+                        {% if user.is_authenticated %}
+                            <span id="mensajes-badge" class="nav-badge" style="display: none;"></span>
+                        {% endif %}
+                    </a></li>
+                    <li><a href="{% url 'main:index' %}#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="nav-actions">
+                    {% if user.is_authenticated %}
+                        <div class="user-menu">
+                            <span class="user-greeting">Hola, {{ user.get_full_name|default:user.username }}</span>
+                            <a href="{% url 'logout' %}" class="btn-secondary">Cerrar Sesión</a>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-secondary">Iniciar Sesión</a>
+                        <a href="{% url 'register' %}" class="btn-primary">Registrarse</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        {% block content %}
+        <div class="mensajeria-container">
+            <div class="mensajeria-sidebar">
+                <div class="mensajeria-header">
+                    <h2><i class="fas fa-comments"></i> Mensajes</h2>
+                    <a href="{% url 'mensajeria:nueva_conversacion' %}" class="btn-primary btn-small">
+                        <i class="fas fa-plus"></i> Nuevo
+                    </a>
+                </div>
+                {% block sidebar_content %}{% endblock %}
+            </div>
+            <div class="mensajeria-content">
+                {% block mensajeria_content %}{% endblock %}
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+
+    <!-- Scripts -->
+    <script src="{% static 'main/script.js' %}"></script>
+    <script src="{% static 'mensajeria/js/mensajeria.js' %}"></script>
+    
+    <!-- Script para contador de mensajes no leídos -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if user.is_authenticated %}
+                function actualizarContadorMensajes() {
+                    fetch('{% url "mensajeria:contador_no_leidos" %}')
+                        .then(response => response.json())
+                        .then(data => {
+                            const badge = document.getElementById('mensajes-badge');
+                            if (data.count > 0) {
+                                badge.textContent = data.count;
+                                badge.style.display = 'inline-block';
+                            } else {
+                                badge.style.display = 'none';
+                            }
+                        })
+                        .catch(error => console.error('Error al obtener contador:', error));
+                }
+
+                // Actualizar contador cada 30 segundos
+                actualizarContadorMensajes();
+                setInterval(actualizarContadorMensajes, 30000);
+            {% endif %}
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

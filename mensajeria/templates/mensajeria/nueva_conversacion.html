@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Conversación - VitaLink</title>
+    
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Estilos inline para nueva conversación */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9f5;
+        }
+        
+        /* Header principal VitaLink */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .nav-logo h2 {
+            color: #4caf50;
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo-tagline {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #4caf50;
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #4caf50;
+            border: 2px solid #4caf50;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        /* Contenedor principal */
+        .main-content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .nueva-conversacion-container {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            padding: 40px;
+            border: 1px solid #e8ecf0;
+        }
+        
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header-section h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+        
+        .header-section p {
+            color: #5a6c7d;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .volver-link {
+            display: inline-flex;
+            align-items: center;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+        
+        .volver-link:hover {
+            color: #4caf50;
+        }
+        
+        .volver-link i {
+            margin-right: 10px;
+            color: #4caf50;
+        }
+        
+        /* Info del usuario actual */
+        .usuario-actual-info {
+            background: linear-gradient(135deg, #e7f5e7, #e0f2e0);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+        
+        .usuario-actual-info h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .usuario-actual-info p {
+            margin: 0;
+            color: #5a6c7d;
+            font-size: 0.95rem;
+        }
+        
+        .tipo-badge {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        /* Formulario */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8ecf0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: #2c3e50;
+            background-color: #fff;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #4caf50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        .form-control::placeholder {
+            color: #8b9dc3;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Opciones de usuario mejoradas */
+        .usuario-option {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .usuario-option:last-child {
+            border-bottom: none;
+        }
+        
+        .usuario-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .usuario-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+        
+        .usuario-details h4 {
+            margin: 0 0 4px 0;
+            font-size: 1rem;
+            color: #2c3e50;
+        }
+        
+        .usuario-tipo {
+            font-size: 0.85rem;
+            color: #5a6c7d;
+        }
+        
+        .btn-primary {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .form-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .no-usuarios {
+            text-align: center;
+            padding: 40px;
+            color: #5a6c7d;
+        }
+        
+        .no-usuarios i {
+            font-size: 3rem;
+            color: #4caf50;
+            margin-bottom: 20px;
+            opacity: 0.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 10px;
+            }
+            
+            .nueva-conversacion-container {
+                padding: 20px;
+            }
+            
+            .header-section h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header principal VitaLink -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="/" style="text-decoration: none; color: inherit;">
+                        <h2>VitaLink</h2>
+                        <span class="logo-tagline">Conectando Vida y Bienestar</span>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="/#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="/#productos" class="nav-link">Productos</a></li>
+                    <li><a href="/#nutricionistas" class="nav-link">Nutricionistas</a></li>
+                    <li><a href="{% url 'mensajeria:lista_conversaciones' %}" class="nav-link active">
+                        <i class="fas fa-comments"></i> Mensajes
+                    </a></li>
+                    <li><a href="/#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="nav-actions">
+                    {% if user.is_authenticated %}
+                        <span style="color: #666; margin-right: 10px;">Hola, {{ user.get_full_name|default:user.username }}</span>
+                        <a href="/admin/logout/" class="btn-secondary">Cerrar Sesión</a>
+                    {% else %}
+                        <a href="/admin/login/" class="btn-secondary">Iniciar Sesión</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <div class="nueva-conversacion-container">
+            <a href="{% url 'mensajeria:lista_conversaciones' %}" class="volver-link">
+                <i class="fas fa-arrow-left"></i> Volver a mensajes
+            </a>
+            
+            <div class="header-section">
+                <h1><i class="fas fa-plus-circle" style="color: #4caf50; margin-right: 10px;"></i>Nueva Conversación</h1>
+                <p>Inicia una conversación con otro usuario de VitaLink</p>
+            </div>
+
+            <!-- Info del usuario actual -->
+            <div class="usuario-actual-info">
+                <h3>
+                    <i class="fas fa-user" style="color: #4caf50; margin-right: 8px;"></i>
+                    Tu perfil: {{ user.get_full_name|default:user.username }}
+                    {% if user.perfil_mensajeria %}
+                        <span class="tipo-badge">{{ user.perfil_mensajeria.get_tipo_usuario_display }}</span>
+                    {% endif %}
+                </h3>
+                <p>
+                    {% if user.perfil_mensajeria.tipo_usuario == 'cliente' %}
+                        Como cliente, puedes contactar a nutricionistas y proveedores de productos nutricionales.
+                    {% elif user.perfil_mensajeria.tipo_usuario == 'nutricionista' %}
+                        Como nutricionista, puedes contactar a clientes, otros nutricionistas y proveedores.
+                    {% elif user.perfil_mensajeria.tipo_usuario == 'proveedor' %}
+                        Como proveedor, puedes contactar a nutricionistas y clientes.
+                    {% else %}
+                        Como administrador, puedes contactar a todos los usuarios del sistema.
+                    {% endif %}
+                </p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="padding: 12px 16px; margin-bottom: 20px; border-radius: 8px; {% if message.tags == 'error' %}background-color: #ffebee; color: #c62828; border: 1px solid #f44336;{% else %}background-color: #e7f5e7; color: #2e7d32; border: 1px solid #4caf50;{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if usuarios %}
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="destinatario">
+                            <i class="fas fa-users" style="color: #4caf50; margin-right: 8px;"></i>
+                            Selecciona un destinatario:
+                        </label>
+                        <select name="destinatario" id="destinatario" class="form-control" required>
+                            <option value="">-- Selecciona un usuario --</option>
+                            {% for usuario in usuarios %}
+                                <option value="{{ usuario.id }}" {% if destinatario and destinatario.id == usuario.id %}selected{% endif %}>
+                                    {{ usuario.get_full_name|default:usuario.username }}
+                                    {% if usuario.perfil_mensajeria %}
+                                        - {{ usuario.perfil_mensajeria.get_tipo_usuario_display }}
+                                    {% endif %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensaje">
+                            <i class="fas fa-comment" style="color: #4caf50; margin-right: 8px;"></i>
+                            Mensaje inicial:
+                        </label>
+                        <textarea name="mensaje" id="mensaje" class="form-control" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </div>
+                </form>
+            {% else %}
+                <div class="no-usuarios">
+                    <i class="fas fa-users-slash"></i>
+                    <h3>No hay usuarios disponibles</h3>
+                    <p>
+                        {% if user.perfil_mensajeria.tipo_usuario == 'cliente' %}
+                            No hay nutricionistas o proveedores registrados en el sistema aún.
+                        {% elif user.perfil_mensajeria.tipo_usuario == 'nutricionista' %}
+                            No hay otros usuarios registrados en el sistema aún.
+                        {% elif user.perfil_mensajeria.tipo_usuario == 'proveedor' %}
+                            No hay nutricionistas o clientes registrados en el sistema aún.
+                        {% else %}
+                            No hay otros usuarios registrados en el sistema.
+                        {% endif %}
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('destinatario');
+            const textarea = document.getElementById('mensaje');
+            
+            // Auto-resize del textarea
+            if (textarea) {
+                textarea.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = Math.min(this.scrollHeight, 200) + 'px';
+                });
+            }
+            
+            // Mensaje predeterminado según el tipo de destinatario
+            if (select) {
+                select.addEventListener('change', function() {
+                    const selectedOption = this.options[this.selectedIndex];
+                    if (selectedOption.value && textarea) {
+                        const texto = selectedOption.text;
+                        if (texto.includes('Nutricionista')) {
+                            textarea.placeholder = 'Hola, me gustaría agendar una consulta nutricional...';
+                        } else if (texto.includes('Proveedor')) {
+                            textarea.placeholder = 'Hola, estoy interesado en sus productos nutricionales...';
+                        } else if (texto.includes('Cliente')) {
+                            textarea.placeholder = 'Hola, ¿en qué puedo ayudarte?';
+                        } else {
+                            textarea.placeholder = 'Escribe tu mensaje aquí...';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
