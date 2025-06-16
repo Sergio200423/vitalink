@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaLink - Conectando Vida y Bienestar</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>VitaLink</h2>
+                    <span class="logo-tagline">Conectando Vida y Bienestar</span>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="#productos" class="nav-link">Productos</a></li>
+                    <li><a href="#nutricionistas" class="nav-link">Nutricionistas</a></li>
+                    <li><a href="#testimonios" class="nav-link">Testimonios</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn-secondary">Iniciar Sesión</button>
+                    <button class="btn-primary">Registrarse</button>
+                </div>
+                <!--
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                -->
+                
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Transforma tu <span class="highlight">Vida</span> 
+                    con <span class="highlight">Nutrición</span> Profesional
+                </h1>
+                <p class="hero-description">
+                    VitaLink conecta a personas con nutricionistas certificados y productos nutricionales de calidad. 
+                    Inicia tu viaje hacia un estilo de vida más saludable en Nicaragua.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary btn-large">Encontrar Nutricionista</button>
+                    <button class="btn-outline btn-large">Explorar Productos</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Clientes Satisfechos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Nutricionistas Certificados</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Productos Disponibles</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="../static/img/image.png" alt="Nutricionista consultando con cliente" class="nutricionista-img">
+                <div class="floating-card card-1">
+                    <i class="fas fa-apple-alt"></i>
+                    <span>Alimentación Balanceada</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Vida Saludable</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progreso Medible</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestros Servicios</h2>
+                <p>Conectamos a todos los actores del ecosistema nutricional</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Para Clientes</h3>
+                    <p>Encuentra nutricionistas certificados, agenda citas online y accede a planes personalizados de alimentación.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Consultas virtuales</li>
+                        <li><i class="fas fa-check"></i> Planes personalizados</li>
+                        <li><i class="fas fa-check"></i> Seguimiento continuo</li>
+                        <li><i class="fas fa-check"></i> Historial médico seguro</li>
+                    </ul>
+                    <button class="btn-primary">Comenzar Ahora</button>
+                </div>
+                
+                <div class="service-card featured">
+                    <div class="service-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Para Nutricionistas</h3>
+                    <p>Digitaliza tu práctica, amplía tu cartera de clientes y gestiona citas de manera eficiente.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Agenda digital</li>
+                        <li><i class="fas fa-check"></i> Herramientas de diagnóstico</li>
+                        <li><i class="fas fa-check"></i> Comunicación segura</li>
+                        <li><i class="fas fa-check"></i> Reportes automáticos</li>
+                    </ul>
+                    <button class="btn-primary">Unirse como Profesional</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Para Proveedores</h3>
+                    <p>Vende productos nutricionales de calidad a través de nuestro marketplace especializado.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Marketplace especializado</li>
+                        <li><i class="fas fa-check"></i> Gestión de inventario</li>
+                        <li><i class="fas fa-check"></i> Análisis de ventas</li>
+                        <li><i class="fas fa-check"></i> Soporte logístico</li>
+                    </ul>
+                    <button class="btn-primary">Vender Productos</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="productos" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Productos Nutricionales</h2>
+                <p>Descubre productos de calidad recomendados por profesionales</p>
+            </div>
+            <div class="product-categories">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="supplements">Suplementos</button>
+                <button class="category-btn" data-category="organic">Orgánicos</button>
+                <button class="category-btn" data-category="protein">Proteínas</button>
+                <button class="category-btn" data-category="vitamins">Vitaminas</button>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-category="supplements">
+                    <div class="product-image">
+                        <img src="../static/img/multivitaminico.jpg" alt="Multivitamínico Premium">
+                        <div class="product-badge">Recomendado</div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Multivitamínico Premium</h4>
+                        <p class="product-description">Complejo vitamínico completo para el bienestar diario</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">(4.8) 124 reseñas</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">C$450</span>
+                            <span class="original-price">C$520</span>
+                        </div>
+                        <button class="btn-primary btn-small">Agregar al Carrito</button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="protein">
+                    <div class="product-image">
+                        <img src="../static/img/proteina.jpg" alt="Proteína Vegetal">
+                        <div class="product-badge new">Nuevo</div>
+                    </div>
+                    <div class="product-info">
+                        <h4>Proteína Vegetal Orgánica</h4>
+                        <p class="product-description">Proteína de origen vegetal, ideal para deportistas</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">(4.6) 89 reseñas</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">C$680</span>
+                        </div>
+                        <button class="btn-primary btn-small">Agregar al Carrito</button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="organic">
+                    <div class="product-image">
+                        <img src="../static/img/aceite.jpg" alt="Aceite de Coco">
+                    </div>
+                    <div class="product-info">
+                        <h4>Aceite de Coco Virgen</h4>
+                        <p class="product-description">Aceite de coco 100% natural y orgánico</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-text">(4.9) 156 reseñas</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">C$320</span>
+                        </div>
+                        <button class="btn-primary btn-small">Agregar al Carrito</button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="vitamins">
+                    <div class="product-image">
+                        <img src="../static/img/omega.jpg" alt="Omega 3">
+                    </div>
+                    <div class="product-info">
+                        <h4>Omega 3 Premium</h4>
+                        <p class="product-description">Ácidos grasos esenciales para la salud cardiovascular</p>
+                        <div class="product-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="rating-text">(4.7) 203 reseñas</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">C$580</span>
+                        </div>
+                        <button class="btn-primary btn-small">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutritionists Section -->
+    <section id="nutricionistas" class="nutritionists">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nutricionistas Certificados</h2>
+                <p>Profesionales especializados listos para ayudarte</p>
+            </div>
+            <div class="nutritionists-grid">
+                <div class="nutritionist-card">
+                    <div class="nutritionist-image">
+                        <img src="../static/img/nut1.jpg" alt="Dra. María González">
+                        <div class="status-badge online">En línea</div>
+                    </div>
+                    <div class="nutritionist-info">
+                        <h4>Dra. María González</h4>
+                        <p class="specialization">Especialista en Nutrición Deportiva</p>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span>(4.9) 87 consultas</span>
+                        </div>
+                        <div class="experience">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>8 años de experiencia</span>
+                        </div>
+                        <div class="price">
+                            <span>Desde C$300/consulta</span>
+                        </div>
+                        <button class="btn-primary btn-small">Agendar Cita</button>
+                    </div>
+                </div>
+                
+                <div class="nutritionist-card">
+                    <div class="nutritionist-image">
+                        <img src="../static/img/nut2.jpg" alt="Dr. Carlos Mendoza">
+                        <div class="status-badge busy">Ocupado</div>
+                    </div>
+                    <div class="nutritionist-info">
+                        <h4>Dr. Carlos Mendoza</h4>
+                        <p class="specialization">Nutrición Clínica y Diabetes</p>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span>(4.8) 142 consultas</span>
+                        </div>
+                        <div class="experience">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>12 años de experiencia</span>
+                        </div>
+                        <div class="price">
+                            <span>Desde C$350/consulta</span>
+                        </div>
+                        <button class="btn-primary btn-small">Agendar Cita</button>
+                    </div>
+                </div>
+                
+                <div class="nutritionist-card">
+                    <div class="nutritionist-image">
+                        <img src="../static/img/nut3.jpg" alt="Dra. Ana Rodríguez">
+                        <div class="status-badge online">En línea</div>
+                    </div>
+                    <div class="nutritionist-info">
+                        <h4>Dra. Ana Rodríguez</h4>
+                        <p class="specialization">Nutrición Infantil y Familiar</p>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>(4.7) 96 consultas</span>
+                        </div>
+                        <div class="experience">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>6 años de experiencia</span>
+                        </div>
+                        <div class="price">
+                            <span>Desde C$280/consulta</span>
+                        </div>
+                        <button class="btn-primary btn-small">Agendar Cita</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-section">
+                <h3>¿Eres Nutricionista?</h3>
+                <p>Únete a nuestra plataforma y digitaliza tu práctica profesional</p>
+                <button class="btn-outline btn-large">Registrarse como Profesional</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonios" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Lo que Dicen Nuestros Usuarios</h2>
+                <p>Historias reales de transformación y bienestar</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card active">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p>"VitaLink cambió mi vida completamente. Encontré a la nutricionista perfecta y en 6 meses logré mis objetivos de peso y salud. La plataforma es muy fácil de usar."</p>
+                        <div class="testimonial-author">
+                            <img src="/placeholder.svg?height=60&width=60" alt="Carmen López">
+                            <div class="author-info">
+                                <h5>Carmen López</h5>
+                                <span>Cliente desde hace 8 meses</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p>"Como nutricionista, VitaLink me ha permitido llegar a más pacientes y organizar mejor mi práctica. Las herramientas digitales son excelentes."</p>
+                        <div class="testimonial-author">
+                            <img src="/placeholder.svg?height=60&width=60" alt="Dr. Roberto Silva">
+                            <div class="author-info">
+                                <h5>Dr. Roberto Silva</h5>
+                                <span>Nutricionista certificado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p>"Los productos que compro en VitaLink son de excelente calidad y llegan rápido. Además, las recomendaciones de mi nutricionista están integradas."</p>
+                        <div class="testimonial-author">
+                            <img src="/placeholder.svg?height=60&width=60" alt="José Martínez">
+                            <div class="author-info">
+                                <h5>José Martínez</h5>
+                                <span>Cliente activo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="prev-btn" onclick="changeTestimonial(-1)">❮</button>
+                <div class="testimonial-dots">
+                    <span class="dot active" onclick="currentTestimonial(1)"></span>
+                    <span class="dot" onclick="currentTestimonial(2)"></span>
+                    <span class="dot" onclick="currentTestimonial(3)"></span>
+                </div>
+                <button class="next-btn" onclick="changeTestimonial(1)">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Contáctanos</h2>
+                    <p>¿Tienes preguntas? Estamos aquí para ayudarte en tu viaje hacia una vida más saludable.</p>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Managua, Nicaragua</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+505 2222-3333</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contacto@vitalink.com.ni</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <h3>Envíanos un Mensaje</h3>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Tu teléfono">
+                    </div>
+                    <div class="form-group">
+                        <select id="subject" name="subject" required>
+                            <option value="">Selecciona un tema</option>
+                            <option value="cliente">Soy cliente potencial</option>
+                            <option value="nutricionista">Soy nutricionista</option>
+                            <option value="proveedor">Soy proveedor</option>
+                            <option value="soporte">Soporte técnico</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Tu mensaje" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-large">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>VitaLink</h3>
+                    <p>Conectando vida y bienestar a través de la nutrición profesional en Nicaragua.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#">Consultas Nutricionales</a></li>
+                        <li><a href="#">Planes Personalizados</a></li>
+                        <li><a href="#">Productos Nutricionales</a></li>
+                        <li><a href="#">Seguimiento Online</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Para Profesionales</h4>
+                    <ul>
+                        <li><a href="#">Registro de Nutricionistas</a></li>
+                        <li><a href="#">Herramientas Digitales</a></li>
+                        <li><a href="#">Capacitaciones</a></li>
+                        <li><a href="#">Soporte Técnico</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nosotros</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 VitaLink. Todos los derechos reservados. | Desarrollado con ❤️ en Nicaragua</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>
