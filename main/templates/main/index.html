@@ -1,13 +1,15 @@
 <!DOCTYPE html>
+{%load static%}
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VitaLink - Conectando Vida y Bienestar</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="{%static 'main/styles.css'%}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Header -->
     <header class="header">
@@ -29,13 +31,13 @@
                     <button class="btn-secondary">Iniciar Sesión</button>
                     <button class="btn-primary">Registrarse</button>
                 </div>
-                <!--
-                <div class="nav-toggle" id="nav-toggle">
+
+                <!-- <div class="nav-toggle" id="nav-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
-                -->
+                </div> -->
+
                 
             </div>
         </nav>
@@ -73,7 +75,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="../static/img/image.png" alt="Nutricionista consultando con cliente" class="nutricionista-img">
+                <img src="{% static 'main/img/image.png'%}" alt="Nutricionista consultando con cliente" class="nutricionista-img">
                 <div class="floating-card card-1">
                     <i class="fas fa-apple-alt"></i>
                     <span>Alimentación Balanceada</span>
@@ -163,7 +165,7 @@
             <div class="products-grid">
                 <div class="product-card" data-category="supplements">
                     <div class="product-image">
-                        <img src="../static/img/multivitaminico.jpg" alt="Multivitamínico Premium">
+                        <img src="{% static 'main/img/multivitaminico.jpg'%}" alt="Multivitamínico Premium">
                         <div class="product-badge">Recomendado</div>
                     </div>
                     <div class="product-info">
@@ -183,7 +185,7 @@
                 
                 <div class="product-card" data-category="protein">
                     <div class="product-image">
-                        <img src="../static/img/proteina.jpg" alt="Proteína Vegetal">
+                        <img src="{% static 'main/img/proteina.jpg'%}" alt="Proteína Vegetal">
                         <div class="product-badge new">Nuevo</div>
                     </div>
                     <div class="product-info">
@@ -202,7 +204,7 @@
                 
                 <div class="product-card" data-category="organic">
                     <div class="product-image">
-                        <img src="../static/img/aceite.jpg" alt="Aceite de Coco">
+                        <img src="{% static 'main/img/aceite.jpg'%}" alt="Aceite de Coco">
                     </div>
                     <div class="product-info">
                         <h4>Aceite de Coco Virgen</h4>
@@ -220,7 +222,7 @@
                 
                 <div class="product-card" data-category="vitamins">
                     <div class="product-image">
-                        <img src="../static/img/omega.jpg" alt="Omega 3">
+                        <img src="{% static 'main/img/omega.jpg'%}" alt="Omega 3">
                     </div>
                     <div class="product-info">
                         <h4>Omega 3 Premium</h4>
@@ -249,7 +251,7 @@
             <div class="nutritionists-grid">
                 <div class="nutritionist-card">
                     <div class="nutritionist-image">
-                        <img src="../static/img/nut1.jpg" alt="Dra. María González">
+                        <img src="{% static 'main/img/nut1.jpg'%}" alt="Dra. María González">
                         <div class="status-badge online">En línea</div>
                     </div>
                     <div class="nutritionist-info">
@@ -272,7 +274,7 @@
                 
                 <div class="nutritionist-card">
                     <div class="nutritionist-image">
-                        <img src="../static/img/nut2.jpg" alt="Dr. Carlos Mendoza">
+                        <img src="{% static 'main/img/nut2.jpg'%}" alt="Dr. Carlos Mendoza">
                         <div class="status-badge busy">Ocupado</div>
                     </div>
                     <div class="nutritionist-info">
@@ -295,7 +297,7 @@
                 
                 <div class="nutritionist-card">
                     <div class="nutritionist-image">
-                        <img src="../static/img/nut3.jpg" alt="Dra. Ana Rodríguez">
+                        <img src="{% static 'main/img/nut3.jpg'%}" alt="Dra. Ana Rodríguez">
                         <div class="status-badge online">En línea</div>
                     </div>
                     <div class="nutritionist-info">
@@ -337,7 +339,7 @@
                         <div class="quote-icon">"</div>
                         <p>"VitaLink cambió mi vida completamente. Encontré a la nutricionista perfecta y en 6 meses logré mis objetivos de peso y salud. La plataforma es muy fácil de usar."</p>
                         <div class="testimonial-author">
-                            <img src="/placeholder.svg?height=60&width=60" alt="Carmen López">
+                            <img src="{% static 'main/img/placeholder.svg'%}" alt="Carmen López">
                             <div class="author-info">
                                 <h5>Carmen López</h5>
                                 <span>Cliente desde hace 8 meses</span>
@@ -351,7 +353,7 @@
                         <div class="quote-icon">"</div>
                         <p>"Como nutricionista, VitaLink me ha permitido llegar a más pacientes y organizar mejor mi práctica. Las herramientas digitales son excelentes."</p>
                         <div class="testimonial-author">
-                            <img src="/placeholder.svg?height=60&width=60" alt="Dr. Roberto Silva">
+                            <img src="{% static 'main/img/placeholder.svg'%}" alt="Dr. Roberto Silva">
                             <div class="author-info">
                                 <h5>Dr. Roberto Silva</h5>
                                 <span>Nutricionista certificado</span>
@@ -365,7 +367,7 @@
                         <div class="quote-icon">"</div>
                         <p>"Los productos que compro en VitaLink son de excelente calidad y llegan rápido. Además, las recomendaciones de mi nutricionista están integradas."</p>
                         <div class="testimonial-author">
-                            <img src="/placeholder.svg?height=60&width=60" alt="José Martínez">
+                            <img src="{% static 'main/img/placeholder.svg'%}" alt="José Martínez">
                             <div class="author-info">
                                 <h5>José Martínez</h5>
                                 <span>Cliente activo</span>
@@ -508,6 +510,6 @@
         </div>
     </footer>
 
-    <script src="../static/script.js"></script>
+    <script src="{%static 'main/script.js'%}"></script>
 </body>
 </html>

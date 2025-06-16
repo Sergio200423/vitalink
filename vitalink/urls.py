@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('herramientas.urls'))
+    path('', include('main.urls')) #Le permitimos saber cuales son las urls de la app main
 ]

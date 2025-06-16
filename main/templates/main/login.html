@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - VitaLink</title>
-    <link rel="stylesheet" href="../static/auth.css">
-    <link rel="stylesheet" href="../static/auth.js">
+    <link rel="stylesheet" href="{% static 'main/auth.css'%}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -14,11 +14,11 @@
     <header class="auth-header">
         <nav class="auth-nav">
             <div class="nav-container">
-                <a href="../templates/index.html" class="nav-logo">
+                <a href="{% url 'inicio'%}" class="nav-logo">
                     <h2>VitaLink</h2>
                     <span class="logo-tagline">Conectando Vida y Bienestar</span>
                 </a>
-                <a href="../templates/index.html" class="back-home">
+                <a href="{% url 'inicio'%}" class="back-home">
                     <i class="fas fa-arrow-left"></i>
                     Volver al Inicio
                 </a>
@@ -120,7 +120,7 @@
                         </div>
 
                         <div class="auth-switch">
-                            <p>¿No tienes una cuenta? <a href="register.html">Regístrate aquí</a></p>
+                            <p>¿No tienes una cuenta? <a href="{% templates 'main/register.html'%}">Regístrate aquí</a></p>
                         </div>
                     </form>
                 </div>
@@ -135,6 +135,6 @@
         </div>
     </footer>
 
-    <script src="../static/auth.js"></script>
+    <script src="{static 'main/auth.js'}"></script>
 </body>
 </html>
