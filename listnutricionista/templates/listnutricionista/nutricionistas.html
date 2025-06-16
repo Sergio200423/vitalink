@@ -1,0 +1,25 @@
+<!-- listnutricionista/templates/listnutricionista/nutricionistas.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nutricionistas Suscritos</title>
+    <link rel="stylesheet" href="{% static 'listnutricionista/styles.css' %}">
+</head>
+<body>
+    <h1>Nutricionistas Suscritos</h1>
+    <div class="nutricionistas-lista">
+        {% for n in nutricionistas %}
+            <div class="nutricionista">
+                <h2>{{ n.nombre }} {{ n.apellidos }}</h2>
+                <p>Email: {{ n.correo_electronico }}</p>
+                <p>Certificado para vender productos: {{ n.certificacion_venta_productos|yesno:"Sí,No" }}</p>
+            </div>
+        {% empty %}
+            <p>No hay nutricionistas suscritos.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
