@@ -39,16 +39,19 @@
                         <h3>Calculadora de IMC</h3>
                     </div>
                     <div class="tool-content">
-                        <div class="input-group">
-                            <label for="peso">Peso (kg)</label>
-                            <input type="number" id="peso" placeholder="Ej: 70" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label for="altura">Altura (cm)</label>
-                            <input type="number" id="altura" placeholder="Ej: 175" step="0.1">
-                        </div>
-                        <button class="btn btn-primary" onclick="calcularIMC()">Calcular IMC</button>
-                        <div id="resultado-imc" class="resultado"></div>
+                        <form id="imcForm" action="{% url 'inicio'%}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <label for="peso">Peso (kg)</label>
+                                <input name="peso" type="number" id="peso" placeholder="Ej: 70" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label for="altura">Altura (cm)</label>
+                                <input name="altura" type="number" id="altura" placeholder="Ej: 175" step="0.1">
+                            </div>
+                            <button class="btn btn-primary">Calcular IMC</button>
+                            <div id="resultado-imc" class="resultado"></div>
+                        </form>
                     </div>
                 </div>
 
@@ -90,33 +93,8 @@
                     </div>
                     <div class="tool-content">
                         <div class="expediente-form">
-                            <div class="input-row">
-                                <div class="input-group">
-                                    <label for="exp-nombre">Nombre</label>
-                                    <input type="text" id="exp-nombre" placeholder="Nombre completo">
-                                </div>
-                                <div class="input-group">
-                                    <label for="exp-edad">Edad</label>
-                                    <input type="number" id="exp-edad" placeholder="Edad">
-                                </div>
-                            </div>
-                            <div class="input-row">
-                                <div class="input-group">
-                                    <label for="exp-peso">Peso (kg)</label>
-                                    <input type="number" id="exp-peso" placeholder="Peso actual" step="0.1">
-                                </div>
-                                <div class="input-group">
-                                    <label for="exp-altura">Altura (cm)</label>
-                                    <input type="number" id="exp-altura" placeholder="Altura" step="0.1">
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <label for="exp-notas">Notas adicionales</label>
-                                <textarea id="exp-notas" placeholder="Alergias, condiciones médicas, preferencias..."></textarea>
-                            </div>
-                            <button class="btn btn-accent" onclick="agregarExpediente()">Agregar Expediente</button>
+                            <a href="{% url 'expediente' %}" class="btn btn-accent">Agregar Expediente</a>
                         </div>
-                        <div id="expedientes-lista" class="expedientes-container"></div>
                     </div>
                 </div>
             </section>

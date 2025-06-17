@@ -1,55 +1,106 @@
+//Capturamos el form para poder hacer el submit
+const form = document.getElementById('imcForm')
+
 // Datos almacenados localmente
 let planes = JSON.parse(localStorage.getItem("planes")) || []
 let expedientes = JSON.parse(localStorage.getItem("expedientes")) || []
 
-// Función para calcular IMC
-function calcularIMC() {
-  const peso = Number.parseFloat(document.getElementById("peso").value)
-  const altura = Number.parseFloat(document.getElementById("altura").value)
+// Capturamos los inputs para poder cambiar la clase si es necesario
+const pesoInput = document.getElementById('peso');
+const alturaInput = document.getElementById('altura');
+
+//Eliminamos la clase error del pesoInput y alturaInput respectivamente
+pesoInput.addEventListener('input', function() {
+  if (pesoInput.classList.contains('error')) {
+    pesoInput.classList.remove('error');
+  }
+});
+
+alturaInput.addEventListener('input', function() {
+  if (alturaInput.classList.contains('error')) {
+    alturaInput.classList.remove('error');
+  }
+});
+
+//Funcion para poner mensajes de error o exito en el imc
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+
+  const peso = document.getElementById('peso').value
+  const altura = document.getElementById('altura').value
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   const resultadoDiv = document.getElementById("resultado-imc")
 
-  if (!peso || !altura || peso <= 0 || altura <= 0) {
-    resultadoDiv.innerHTML =
-      '<p style="color: var(--accent-red);">Por favor, ingresa valores válidos para peso y altura.</p>'
-    return
-  }
+  try{
+    const response = await fetch(form.action, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRFToken': csrfToken
+      },
+      body: `peso=${encodeURIComponent(peso)}&altura=${encodeURIComponent(altura)}`
+    });
 
-  // Convertir altura de cm a metros
-  const alturaMetros = altura / 100
-  const imc = peso / (alturaMetros * alturaMetros)
+    const data = await response.json();
 
-  let categoria = ""
-  let clase = ""
-  let recomendacion = ""
+    if(typeof data.imc === "number" && !isNaN(data.imc))
+    {
+        //Condicionales para saber la categoria y una pequeña recomendacion
+        let categoria = "";
+        let clase = "";
+        let recomendacion = "";
 
-  if (imc < 18.5) {
-    categoria = "Bajo peso"
-    clase = "bajo-peso"
-    recomendacion = "Se recomienda consultar con un profesional para evaluar un plan de ganancia de peso saludable."
-  } else if (imc >= 18.5 && imc < 25) {
-    categoria = "Peso normal"
-    clase = "normal"
-    recomendacion = "Mantén un estilo de vida saludable con una dieta equilibrada y ejercicio regular."
-  } else if (imc >= 25 && imc < 30) {
-    categoria = "Sobrepeso"
-    clase = "sobrepeso"
-    recomendacion = "Se recomienda adoptar hábitos alimenticios más saludables y aumentar la actividad física."
-  } else {
-    categoria = "Obesidad"
-    clase = "obesidad"
-    recomendacion =
-      "Es importante consultar con un profesional de la salud para desarrollar un plan de pérdida de peso seguro."
-  }
+        if (data.imc < 18.5) {
+          categoria = "Bajo peso"
+          clase = "bajo-peso"
+          recomendacion = "Se recomienda consultar con un profesional para evaluar un plan de ganancia de peso saludable."
+        } else if (data.imc >= 18.5 && data.imc < 25) {
+          categoria = "Peso normal"
+          clase = "normal"
+          recomendacion = "Mantén un estilo de vida saludable con una dieta equilibrada y ejercicio regular."
+        } else if (data.imc >= 25 && data.imc < 30) {
+          categoria = "Sobrepeso"
+          clase = "sobrepeso"
+          recomendacion = "Se recomienda adoptar hábitos alimenticios más saludables y aumentar la actividad física."
+        } else {
+          categoria = "Obesidad"
+          clase = "obesidad"
+          recomendacion =
+            "Es importante consultar con un profesional de la salud para desarrollar un plan de pérdida de peso seguro."
+        }
 
-  resultadoDiv.innerHTML = `
-        <div class="resultado ${clase}">
-            <h4>Resultado del IMC</h4>
-            <p><strong>IMC: ${imc.toFixed(1)}</strong></p>
-            <p><strong>Categoría: ${categoria}</strong></p>
-            <p>${recomendacion}</p>
-        </div>
-    `
-}
+        resultadoDiv.innerHTML = `
+          <div class="resultado ${clase}">
+              <h4>Resultado del IMC</h4>
+              <p><strong>IMC: ${data.imc.toFixed(1)}</strong></p>
+              <p><strong>Categoría: ${categoria}</strong></p>
+              <p>${recomendacion}</p>
+          </div>
+        `;
+        form.reset();
+        document.getElementById('peso').focus();
+    } else if (data.mensaje){
+        if(data.mensaje.includes("peso") && data.mensaje.includes("altura")){
+          document.getElementById("altura").classList.add('error');
+          document.getElementById("peso ").classList.add('error');
+          
+        }
+        if(data.mensaje.includes("peso")){
+          document.getElementById("peso").focus();
+          document.getElementById("altura").classList.add('error');
+        }
+        if(data.mensaje.includes("altura")){
+          document.getElementById("altura").focus();
+          document.getElementById("altura").classList.add('error');
+        }
+        resultadoDiv.innerHTML = `<p class="resultado error">${data.mensaje}</p>`;
+      } else {
+        resultadoDiv.innerHTML = `<p class="resultado error">Ocurrio un error inesperado.</p>`;
+      }
+  }catch (error) {
+    resultadoDiv.innerHTML = `<p>Error de red o del servidor: ${error.message}</p>`
+  }  
+});
 
 // Función para crear plan personalizado
 function crearPlan() {
@@ -212,18 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
   mostrarExpedientes()
 
   // Agregar event listeners para Enter en los campos de IMC
-  document.getElementById("peso").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      calcularIMC()
-    }
-  })
-
-  document.getElementById("altura").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      calcularIMC()
-    }
-  })
-})
 
 // Navegación simple
 document.querySelectorAll(".nav-link").forEach((link) => {
@@ -236,4 +275,4 @@ document.querySelectorAll(".nav-link").forEach((link) => {
     // Agregar clase active al link clickeado
     this.classList.add("active")
   })
-})
+})})

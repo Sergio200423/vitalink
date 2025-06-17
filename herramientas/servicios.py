@@ -1,16 +1,39 @@
+
+def procesar_peso_altura(peso_str, altura_str):
+    """Funcion para convertir los strings obtenidos del formulario
+    que son altura y peso a numeros flotantes.
+    Mandamos un mensaje de error en caso de que peso_str o 
+    altura_str no se puedan convertir a flotantes
+    """
+    try:
+        peso = float(peso_str)
+        altura = float(altura_str)
+        return {"ok": True, "peso": peso, "altura": altura, "mensaje": ""}
+    except (TypeError, ValueError):
+        return {"ok": False, "peso": None, "altura": None, "mensaje": "Por favor, ingrese numeros validos"}
+
 def validar_peso_altura(peso, altura):
-    if not isinstance(peso, (int,float)):
-        return False, "El peso debe ser un numero entero o flotante."
-    if not isinstance(altura, (int,float)):
-        return False, "La altura debe ser un numero entero o flotante."
+    """
+    Funcion para validar que la altura y el peso sean numeros mayores que cero
+    """
+    mensajes = []
     if peso <= 0:
-        return False, "El peso debe ser mayor a cero."
+        mensajes.append("El peso debe ser mayor a cero.\n")
     if altura <= 0:
-        return False, "La altura debe ser mayor a cero."
+        mensajes.append("La altura debe ser mayor a cero.")
+    
+    if mensajes:
+        return False, " ".join(mensajes)
     return True, ""
 
+
 def calcularIMC(peso, altura):
+    """
+    Funcion para calcular el IMC, mensaje de error en caso de que 
+    alguna variable tuviera un valor incorrecto. Redondeamos a un 
+    digito
+    """
     esValido, mensajeError = validar_peso_altura(peso, altura)
     if(esValido):
-        return peso / pow(altura, 2)  #Retornamos el indice de masa corporal
+        return round(peso / pow(altura, 2), 1)  #Retornamos el indice de masa corporal
     return mensajeError

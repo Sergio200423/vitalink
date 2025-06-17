@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaLink - Expediente del Paciente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'herramientas/expedienteStyle.css'%}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>VitaLink</span>
+                </div>
+                <h1>Expediente del Paciente</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="saveRecord()">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <button class="btn btn-primary" onclick="exportRecord()">
+                        <i class="fas fa-download"></i> Exportar
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <ul class="nav-menu">
+                    <li class="nav-item active" data-section="datos-generales">
+                        <i class="fas fa-user"></i>
+                        <span>Datos Generales</span>
+                    </li>
+                    <li class="nav-item" data-section="antecedentes-medicos">
+                        <i class="fas fa-stethoscope"></i>
+                        <span>Antecedentes Médicos</span>
+                    </li>
+                    <li class="nav-item" data-section="antecedentes-nutricionales">
+                        <i class="fas fa-utensils"></i>
+                        <span>Antecedentes Nutricionales</span>
+                    </li>
+                    <li class="nav-item" data-section="evaluacion-antropometrica">
+                        <i class="fas fa-weight"></i>
+                        <span>Evaluación Antropométrica</span>
+                    </li>
+                    <li class="nav-item" data-section="estado-nutricional">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Estado Nutricional</span>
+                    </li>
+                    <li class="nav-item" data-section="plan-alimentacion">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Plan de Alimentación</span>
+                    </li>
+                    <li class="nav-item" data-section="seguimiento">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Seguimiento</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Form Content -->
+            <main class="form-content">
+                <form id="patient-record-form">
+                    <!-- Datos Generales -->
+                    <section id="datos-generales" class="form-section active">
+                        <div class="section-header">
+                            <h2><i class="fas fa-user"></i> Datos Generales del Paciente</h2>
+                            <p>Información básica y de contacto del paciente</p>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="nombre-completo">Nombre Completo *</label>
+                                <input type="text" id="nombre-completo" name="nombreCompleto" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fecha-nacimiento">Fecha de Nacimiento *</label>
+                                <input type="date" id="fecha-nacimiento" name="fechaNacimiento" required onchange="calculateAge()">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="edad">Edad</label>
+                                <input type="number" id="edad" name="edad" readonly>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="genero">Género / Sexo *</label>
+                                <select id="genero" name="genero" required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="estado-civil">Estado Civil</label>
+                                <select id="estado-civil" name="estadoCivil">
+                                    <option value="">Seleccionar</option>
+                                    <option value="soltero">Soltero/a</option>
+                                    <option value="casado">Casado/a</option>
+                                    <option value="divorciado">Divorciado/a</option>
+                                    <option value="viudo">Viudo/a</option>
+                                    <option value="union-libre">Unión Libre</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ocupacion">Ocupación</label>
+                                <input type="text" id="ocupacion" name="ocupacion">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefono">Teléfono de Contacto *</label>
+                                <input type="tel" id="telefono" name="telefono" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="direccion">Dirección Completa</label>
+                                <textarea id="direccion" name="direccion" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="identificacion">Número de Identificación</label>
+                                <input type="text" id="identificacion" name="identificacion">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="responsable">Responsable/Tutor (menores)</label>
+                                <input type="text" id="responsable" name="responsable">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Antecedentes Médicos -->
+                    <section id="antecedentes-medicos" class="form-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-stethoscope"></i> Antecedentes Médicos</h2>
+                            <p>Historial médico personal y familiar</p>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h3>Antecedentes Personales</h3>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="enfermedades-cronicas">Enfermedades Crónicas Actuales</label>
+                                    <textarea id="enfermedades-cronicas" name="enfermedadesCronicas" rows="3" placeholder="Diabetes, hipertensión, etc."></textarea>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="alergias">Alergias Alimentarias o Medicamentosas</label>
+                                    <textarea id="alergias" name="alergias" rows="2"></textarea>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="intolerancias">Intolerancias Alimentarias</label>
+                                    <textarea id="intolerancias" name="intolerancias" rows="2" placeholder="Lactosa, gluten, etc."></textarea>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="cirugias">Cirugías Previas</label>
+                                    <textarea id="cirugias" name="cirugias" rows="2"></textarea>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="hospitalizaciones">Hospitalizaciones Recientes</label>
+                                    <textarea id="hospitalizaciones" name="hospitalizaciones" rows="2"></textarea>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="tratamientos">Tratamientos Médicos Actuales</label>
+                                    <textarea id="tratamientos" name="tratamientos" rows="3" placeholder="Medicamentos, dosis, duración"></textarea>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="suplementos">Suplementos o Complementos Nutricionales</label>
+                                    <textarea id="suplementos" name="suplementos" rows="2"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="embarazo-lactancia">Embarazo/Lactancia (mujeres)</label>
+                                    <select id="embarazo-lactancia" name="embarazoLactancia">
+                                        <option value="">No aplica</option>
+                                        <option value="embarazada">Embarazada</option>
+                                        <option value="lactando">Lactando</option>
+                                        <option value="ninguno">Ninguno</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="menopausia">Menopausia/Factores Hormonales</label>
+                                    <input type="text" id="menopausia" name="menopausia">
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="historial-quirurgico">Historial Quirúrgico Digestivo</label>
+                                    <textarea id="historial-quirurgico" name="historialQuirurgico" rows="2" placeholder="Bypass gástrico, colecistectomía, etc."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h3>Antecedentes Familiares</h3>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="antecedentes-familiares">Antecedentes Familiares de Enfermedades</label>
+                                    <textarea id="antecedentes-familiares" name="antecedentesFamiliares" rows="4" placeholder="Diabetes, hipertensión, obesidad, anemias, etc."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Antecedentes Nutricionales -->
+                    <section id="antecedentes-nutricionales" class="form-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-utensils"></i> Antecedentes Nutricionales</h2>
+                            <p>Hábitos alimentarios y estilo de vida</p>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="patron-alimentario">Patrón Alimentario Habitual</label>
+                                <textarea id="patron-alimentario" name="patronAlimentario" rows="4" placeholder="Desayuno, comida, cena, refrigerios"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="preparacion-alimentos">Preparación de Alimentos</label>
+                                <input type="text" id="preparacion-alimentos" name="preparacionAlimentos" placeholder="Cocción, frituras, condimentos">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="horarios-alimentacion">Horarios de Alimentación</label>
+                                <input type="text" id="horarios-alimentacion" name="horariosAlimentacion">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="frecuencia-comidas">Frecuencia de Comidas al Día</label>
+                                <input type="number" id="frecuencia-comidas" name="frecuenciaComidas" min="1" max="10">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="consumo-liquidos">Consumo de Líquidos Diarios (L)</label>
+                                <input type="number" id="consumo-liquidos" name="consumoLiquidos" step="0.1" min="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="consumo-alcohol">Consumo de Alcohol</label>
+                                <select id="consumo-alcohol" name="consumoAlcohol">
+                                    <option value="">Seleccionar</option>
+                                    <option value="nunca">Nunca</option>
+                                    <option value="ocasional">Ocasional</option>
+                                    <option value="moderado">Moderado</option>
+                                    <option value="frecuente">Frecuente</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="habitos-tabaquicos">Hábitos Tabáquicos</label>
+                                <select id="habitos-tabaquicos" name="habitosTabaquicos">
+                                    <option value="">Seleccionar</option>
+                                    <option value="no-fuma">No fuma</option>
+                                    <option value="ex-fumador">Ex-fumador</option>
+                                    <option value="fumador-ocasional">Fumador ocasional</option>
+                                    <option value="fumador-habitual">Fumador habitual</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="actividad-fisica">Actividad Física</label>
+                                <input type="text" id="actividad-fisica" name="actividadFisica" placeholder="Frecuencia, tipo, duración">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="dieta-especial">Dieta Especial Actual</label>
+                                <input type="text" id="dieta-especial" name="dietaEspecial" placeholder="Vegetariana, vegana, cetogénica, etc.">
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="restricciones-culturales">Restricciones Culturales o Religiosas</label>
+                                <textarea id="restricciones-culturales" name="restriccionesCulturales" rows="2"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="preferencias-aversiones">Preferencias y Aversiones Alimentarias</label>
+                                <textarea id="preferencias-aversiones" name="preferenciasAversiones" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="sintomas-digestivos">Síntomas Digestivos Postprandiales</label>
+                                <textarea id="sintomas-digestivos" name="sintomasDigestivos" rows="2" placeholder="Reflujo, flatulencia, diarrea, estreñimiento"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Evaluación Antropométrica -->
+                    <section id="evaluacion-antropometrica" class="form-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-weight"></i> Evaluación Antropométrica y Bioquímica</h2>
+                            <p>Mediciones corporales y análisis de laboratorio</p>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h3>Mediciones Antropométricas</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="peso-actual">Peso Actual (kg) *</label>
+                                    <input type="number" id="peso-actual" name="pesoActual" step="0.1" min="0" required onchange="calculateIMC()">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="talla">Talla / Estatura (cm) *</label>
+                                    <input type="number" id="talla" name="talla" step="0.1" min="0" required onchange="calculateIMC()">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="imc">Índice de Masa Corporal (IMC)</label>
+                                    <input type="number" id="imc" name="imc" step="0.01" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="peso-ideal">Peso Ideal Estimado (kg)</label>
+                                    <input type="number" id="peso-ideal" name="pesoIdeal" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="perimetro-abdominal">Perímetro Abdominal (cm)</label>
+                                    <input type="number" id="perimetro-abdominal" name="perimetroAbdominal" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="perimetro-cadera">Perímetro de Cadera (cm)</label>
+                                    <input type="number" id="perimetro-cadera" name="perimetroCadera" step="0.1" onchange="calculateWHR()">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="relacion-cintura-cadera">Relación Cintura-Cadera</label>
+                                    <input type="number" id="relacion-cintura-cadera" name="relacionCinturaCadera" step="0.01" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="pliegues-cutaneos">Pliegues Cutáneos (mm)</label>
+                                    <input type="text" id="pliegues-cutaneos" name="plieguesCutaneos" placeholder="Tricipital, subescapular, etc.">
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="composicion-corporal">Composición Corporal</label>
+                                    <textarea id="composicion-corporal" name="composicionCorporal" rows="2" placeholder="Masa muscular, grasa, agua, hueso"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h3>Análisis Bioquímicos</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="glucemia">Glucemia (mg/dL)</label>
+                                    <input type="number" id="glucemia" name="glucemia" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="hba1c">Hemoglobina Glucosilada (%)</label>
+                                    <input type="number" id="hba1c" name="hba1c" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="colesterol-total">Colesterol Total (mg/dL)</label>
+                                    <input type="number" id="colesterol-total" name="colesterolTotal" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="hdl">HDL (mg/dL)</label>
+                                    <input type="number" id="hdl" name="hdl" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ldl">LDL (mg/dL)</label>
+                                    <input type="number" id="ldl" name="ldl" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="trigliceridos">Triglicéridos (mg/dL)</label>
+                                    <input type="number" id="trigliceridos" name="trigliceridos" step="0.1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="creatinina">Creatinina (mg/dL)</label>
+                                    <input type="number" id="creatinina" name="creatinina" step="0.01">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="hemoglobina">Hemoglobina (g/dL)</label>
+                                    <input type="number" id="hemoglobina" name="hemoglobina" step="0.1">
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="otros-analisis">Otros Análisis Relevantes</label>
+                                    <textarea id="otros-analisis" name="otrosAnalisis" rows="3" placeholder="Vitamina D, B12, folatos, etc."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Estado Nutricional -->
+                    <section id="estado-nutricional" class="form-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-chart-line"></i> Estado Nutricional Global</h2>
+                            <p>Evaluación integral del estado nutricional</p>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="evaluacion-subjetiva">Evaluación Subjetiva Global</label>
+                                <select id="evaluacion-subjetiva" name="evaluacionSubjetiva">
+                                    <option value="">Seleccionar</option>
+                                    <option value="bien-nutrido">Bien nutrido</option>
+                                    <option value="moderadamente-desnutrido">Moderadamente desnutrido</option>
+                                    <option value="severamente-desnutrido">Severamente desnutrido</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="riesgo-nutricional">Escala de Riesgo Nutricional</label>
+                                <select id="riesgo-nutricional" name="riesgoNutricional">
+                                    <option value="">Seleccionar</option>
+                                    <option value="bajo">Bajo riesgo</option>
+                                    <option value="moderado">Riesgo moderado</option>
+                                    <option value="alto">Alto riesgo</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="sintomas-desnutricion">Síntomas de Desnutrición o Sobrenutrición</label>
+                                <textarea id="sintomas-desnutricion" name="sintomasDesnutricion" rows="2"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cambios-peso">Cambios Recientes de Peso</label>
+                                <input type="text" id="cambios-peso" name="cambiosPeso" placeholder="Pérdida/ganancia sin motivo aparente">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="apoyo-familiar">Apoyo Familiar y Social</label>
+                                <select id="apoyo-familiar" name="apoyoFamiliar">
+                                    <option value="">Seleccionar</option>
+                                    <option value="excelente">Excelente</option>
+                                    <option value="bueno">Bueno</option>
+                                    <option value="regular">Regular</option>
+                                    <option value="deficiente">Deficiente</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="acceso-alimentos">Acceso a Alimentos</label>
+                                <select id="acceso-alimentos" name="accesoAlimentos">
+                                    <option value="">Seleccionar</option>
+                                    <option value="adecuado">Adecuado</option>
+                                    <option value="limitado">Limitado</option>
+                                    <option value="insuficiente">Insuficiente</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="nivel-educativo">Nivel Educativo</label>
+                                <select id="nivel-educativo" name="nivelEducativo">
+                                    <option value="">Seleccionar</option>
+                                    <option value="primaria">Primaria</option>
+                                    <option value="secundaria">Secundaria</option>
+                                    <option value="preparatoria">Preparatoria</option>
+                                    <option value="universidad">Universidad</option>
+                                    <option value="posgrado">Posgrado</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="motivacion">Motivación para Cambiar Hábitos</label>
+                                <select id="motivacion" name="motivacion">
+                                    <option value="">Seleccionar</option>
+                                    <option value="muy-alta">Muy alta</option>
+                                    <option value="alta">Alta</option>
+                                    <option value="moderada">Moderada</option>
+                                    <option value="baja">Baja</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="factores-psicologicos">Factores Psicológicos</label>
+                                <textarea id="factores-psicologicos" name="factoresPsicologicos" rows="2" placeholder="Estrés, depresión, trastornos alimenticios"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Plan de Alimentación -->
+                    <section id="plan-alimentacion" class="form-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-clipboard-list"></i> Plan de Alimentación Personalizado</h2>
+                            <p>Objetivos y recomendaciones nutricionales</p>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="objetivos-nutricionales">Objetivos Nutricionales</label>
+                                <textarea id="objetivos-nutricionales" name="objetivosNutricionales" rows="3" placeholder="Pérdida de peso, aumento de masa muscular, control de diabetes, etc."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ingesta-calorica">Ingesta Calórica Diaria (kcal)</label>
+                                <input type="number" id="ingesta-calorica" name="ingestaCalorica" min="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="proteinas">Proteínas (%)</label>
+                                <input type="number" id="proteinas" name="proteinas" min="0" max="100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="carbohidratos">Carbohidratos (%)</label>
+                                <input type="number" id="carbohidratos" name="carbohidratos" min="0" max="100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="grasas">Grasas (%)</label>
+                                <input type="number" id="grasas" name="grasas" min="0" max="100">
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="plan-comidas">Plan de Comidas</label>
+                                <textarea id="plan-comidas" name="planComidas" rows="6" placeholder="Plan semanal o diario detallado"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="recomendaciones-patologia">Recomendaciones por Patología</label>
+                                <textarea id="recomendaciones-patologia" name="recomendacionesPatologia" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="suplementacion">Guías para Suplementación</label>
+                                <textarea id="suplementacion" name="suplementacion" rows="2"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hidratacion">Recomendaciones de Hidratación (L/día)</label>
+                                <input type="number" id="hidratacion" name="hidratacion" step="0.1" min="0">
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="actividad-fisica-plan">Consejos de Actividad Física</label>
+                                <textarea id="actividad-fisica-plan" name="actividadFisicaPlan" rows="2"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="alimentos-permitidos">Alimentos Permitidos</label>
+                                <textarea id="alimentos-permitidos" name="alimentosPermitidos" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="alimentos-evitar">Alimentos a Evitar</label>
+                                <textarea id="alimentos-evitar" name="alimentosEvitar" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Seguimiento -->
+                    <section id="seguimiento" class="form-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-calendar-check"></i> Seguimiento y Evolución</h2>
+                            <p>Registro de citas y progreso del paciente</p>
+                        </div>
+                        
+                        <div class="seguimiento-container">
+                            <div class="seguimiento-header">
+                                <button type="button" class="btn btn-primary" onclick="addFollowUp()">
+                                    <i class="fas fa-plus"></i> Agregar Seguimiento
+                                </button>
+                            </div>
+                            
+                            <div id="seguimientos-list" class="seguimientos-list">
+                                <!-- Los seguimientos se agregarán dinámicamente aquí -->
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal para confirmaciones -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Título</h3>
+            <p id="modal-message">Mensaje</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary" id="modal-confirm">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'herramientas/expediente.js'%}"></script>
+</body>
+</html>
