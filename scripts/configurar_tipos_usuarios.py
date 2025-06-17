@@ -3,9 +3,11 @@
 
 import os
 import sys
+import pathlib
 
 # Ajusta la ruta al directorio raíz del proyecto
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = pathlib.Path().resolve()
+sys.path.append(str(BASE_DIR))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vitalink.settings')
 
 import django
