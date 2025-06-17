@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +18,7 @@
                     <h2>VitaLink</h2>
                     <span class="logo-tagline">Conectando Vida y Bienestar</span>
                 </a>
-                <a href="index.html" class="back-home">
+                <a href="{% url 'inicio' %}" class="back-home">
                     <i class="fas fa-arrow-left"></i>
                     Volver al Inicio
                 </a>
@@ -89,7 +90,7 @@
                         </div>
                     </div>
 
-                    <form class="auth-form" id="registerForm">
+                    <form class="auth-form" id="registerForm" action="javascript:void(0);" onsubmit="handleRegisterSubmit(event);">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">Nombre</label>
@@ -218,7 +219,7 @@
                         </div>
 
                         <div class="auth-switch">
-                            <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+                            <p>¿Ya tienes una cuenta? <a href="{% url 'inicioSesion' %}">Inicia sesión aquí</a></p>
                         </div>
                     </form>
                 </div>
