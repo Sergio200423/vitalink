@@ -1,0 +1,39 @@
+/* Backup de los estilos originales - por si necesitas revertir */
+
+/* Estilos originales de la app listnutricionista */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+.nutricionistas-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.nutricionista {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nutricionista h2 {
+  color: #4caf50;
+  margin-top: 0;
+}
+
+.nutricionista p {
+  margin: 10px 0;
+  color: #666;
+}
