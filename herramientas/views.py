@@ -3,7 +3,7 @@ from . import servicios
 from django.http import JsonResponse
 
 # Create your views here.
-def inicio(request):
+def inicio_herramientas(request):
     """
     Capturar el metodo post
     """

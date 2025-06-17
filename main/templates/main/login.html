@@ -9,18 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="auth-body">
+<body class="auth-body login-page">
     <!-- Header simplificado -->
     <header class="auth-header">
         <nav class="auth-nav">
             <div class="nav-container">
-                <a href="{% url 'inicio'%}" class="nav-logo">
+                <a href="{% url 'inicio_main'%}" class="nav-logo">
                     <h2>VitaLink</h2>
                     <span class="logo-tagline">Conectando Vida y Bienestar</span>
                 </a>
-                <a href="{% url 'inicio'%}" class="back-home">
+                <a href="{% url 'inicio_main'%}" class="back-home">
                     <i class="fas fa-arrow-left"></i>
-                    Volver al Inicio
+                    <span class="back-text">Volver al Inicio</span>
                 </a>
             </div>
         </nav>
@@ -28,9 +28,9 @@
 
     <!-- Login Container -->
     <div class="auth-container">
-        <div class="auth-wrapper">
+        <div class="auth-wrapper login-wrapper">
             <!-- Left Side - Image/Info -->
-            <div class="auth-visual">
+            <div class="auth-visual login-visual">
                 <div class="visual-content">
                     <div class="visual-icon">
                         <i class="fas fa-heartbeat"></i>
@@ -67,10 +67,13 @@
                         <p>Ingresa tus credenciales para acceder a tu cuenta</p>
                     </div>
 
-                    <form class="auth-form" id="loginForm" method="post" action="">
+                    <form class="auth-form login-form" id="loginForm" method="post" action="">
                         {% csrf_token %}
                         {% if mensaje %}
-                            <div class="form-error">{{ mensaje }}</div>
+                            <div class="form-error login-error">
+                                <i class="fas fa-exclamation-circle"></i>
+                                {{ mensaje }}
+                            </div>
                         {% endif %}
                         <div class="form-group">
                             <label for="username">Usuario</label>
@@ -97,8 +100,11 @@
                             </label>
                             <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
                         </div>
-                        <button type="submit" class="btn-primary btn-large btn-full">
-                            <span class="btn-text">Iniciar Sesión</span>
+                        <button type="submit" class="btn-primary btn-large btn-full login-btn">
+                            <span class="btn-text">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Iniciar Sesión
+                            </span>
                             <span class="btn-loading" style="display: none;">
                                 <i class="fas fa-spinner fa-spin"></i>
                                 Iniciando...
@@ -110,11 +116,11 @@
                         <div class="social-login">
                             <button type="button" class="social-btn google-btn">
                                 <i class="fab fa-google"></i>
-                                Google
+                                <span>Google</span>
                             </button>
                             <button type="button" class="social-btn facebook-btn">
                                 <i class="fab fa-facebook-f"></i>
-                                Facebook
+                                <span>Facebook</span>
                             </button>
                         </div>
                         <div class="auth-switch">

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-def inicio(request):
+def inicio_main(request):
     return render(request, 'main/index.html')
 
 def registroSesion(request):

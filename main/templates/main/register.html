@@ -18,17 +18,17 @@
                     <h2>VitaLink</h2>
                     <span class="logo-tagline">Conectando Vida y Bienestar</span>
                 </a>
-                <a href="{% url 'inicio' %}" class="back-home">
+                <a href="{% url 'inicio_main' %}" class="back-home">
                     <i class="fas fa-arrow-left"></i>
-                    Volver al Inicio
+                    <span class="back-text">Volver al Inicio</span>
                 </a>
             </div>
         </nav>
     </header>
 
     <!-- Register Container -->
-    <div class="auth-container">
-        <div class="auth-wrapper">
+    <div class="auth-container register-container">
+        <div class="auth-wrapper register-wrapper">
             <!-- Left Side - Image/Info -->
             <div class="auth-visual register-visual">
                 <div class="visual-content">
@@ -60,8 +60,8 @@
             </div>
 
             <!-- Right Side - Register Form -->
-            <div class="auth-form-container">
-                <div class="auth-form-wrapper">
+            <div class="auth-form-container register-form-container">
+                <div class="auth-form-wrapper register-form-wrapper">
                     <div class="form-header">
                         <h1>Crear Cuenta</h1>
                         <p>Completa la información para crear tu cuenta</p>
@@ -90,7 +90,7 @@
                         </div>
                     </div>
 
-                    <form class="auth-form" id="registerForm" action="javascript:void(0);" onsubmit="handleRegisterSubmit(event);">
+                    <form class="auth-form register-form" id="registerForm" action="javascript:void(0);" onsubmit="handleRegisterSubmit(event);">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">Nombre</label>
