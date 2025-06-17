@@ -589,7 +589,7 @@
                     <li><a href="/#inicio" class="nav-link">Inicio</a></li>
                     <li><a href="/#servicios" class="nav-link">Servicios</a></li>
                     <li><a href="/#productos" class="nav-link">Productos</a></li>
-                    <li><a href="/nutricionistas" class="nav-link active">Nutricionistas</a></li>
+                    <li><a href="/listanutricionista/nutricionistas" class="nav-link active">Nutricionistas</a></li>
                     <li><a href="/mensajes/" class="nav-link">
                         <i class="fas fa-comments"></i> Mensajes
                     </a></li>
@@ -598,8 +598,8 @@
                 <div class="nav-actions">
                     {% if user.is_authenticated %}
                         <span style="color: #666; margin-right: 10px;">Hola, {{ user.get_full_name|default:user.username }}</span>
-                        <a href="/admin/logout/" class="btn-secondary">Cerrar Sesión</a>
-                    {% else %}
+                        <a href="/accounts/logout/" class="btn-secondary">Cerrar Sesión</a>
+                        {% else %}
                         <a href="/admin/login/" class="btn-secondary">Iniciar Sesión</a>
                     {% endif %}
                 </div>
