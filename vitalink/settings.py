@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-i1inslc-lvwg8e^t8#0#wqp=q+mk&p3#6)a@n9@5rd+vni)d9c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['www.vitalink.website']
+ALLOWED_HOSTS = []
 
 
 # Application definition
