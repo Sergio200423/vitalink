@@ -333,7 +333,7 @@ p {
 }
 
 .card-1 {
-  top: 20%;
+  top: 100%;
   left: -10%;
   animation-delay: 0s;
 }
@@ -1179,4 +1179,554 @@ a:focus {
     width: 400px; /* Ajusta según tu preferencia */
     height: 50%;
     object-fit: cover;
+}
+
+/* Mejoras responsivas adicionales */
+
+/* Tablets grandes y laptops pequeñas */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .hero-container {
+    gap: var(--spacing-2xl);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .nutritionists-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  /* Mejorar navegación móvil */
+  .nav-container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .nav-logo h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .logo-tagline {
+    font-size: 0.7rem;
+  }
+
+  /* Hero section más responsivo */
+  .hero {
+    padding: 100px 0 var(--spacing-2xl);
+  }
+
+  .hero-container {
+    padding: 0 var(--spacing-sm);
+    gap: var(--spacing-xl);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-2xl);
+    line-height: 1.2;
+  }
+
+  .hero-description {
+    font-size: var(--font-size-base);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .hero-buttons .btn-large {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+  }
+
+  .stat {
+    min-width: 120px;
+  }
+
+  /* Servicios más responsivos */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .service-card {
+    padding: var(--spacing-xl);
+  }
+
+  .service-card.featured {
+    transform: none;
+    order: -1;
+  }
+
+  /* Productos más responsivos */
+  .product-categories {
+    gap: var(--spacing-xs);
+    padding: 0 var(--spacing-sm);
+  }
+
+  .category-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    flex-shrink: 0;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  /* Nutricionistas más responsivos */
+  .nutritionists-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .nutritionist-card {
+    padding: var(--spacing-lg);
+  }
+
+  /* Testimonios más responsivos */
+  .testimonial-card {
+    padding: var(--spacing-lg);
+  }
+
+  .testimonial-content p {
+    font-size: var(--font-size-base);
+  }
+
+  /* Contacto más responsivo */
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .contact-form {
+    padding: var(--spacing-lg);
+  }
+
+  /* Footer más responsivo */
+  .footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .section-header h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .service-card {
+    padding: var(--spacing-lg);
+  }
+
+  .service-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .service-icon i {
+    font-size: var(--font-size-xl);
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nutritionist-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  /* Variables responsivas para móviles pequeños */
+  :root {
+    --spacing-xs: 0.2rem;
+    --spacing-sm: 0.4rem;
+    --spacing-md: 0.8rem;
+    --spacing-lg: 1.2rem;
+    --spacing-xl: 1.6rem;
+    --spacing-2xl: 2.4rem;
+    --spacing-3xl: 3.2rem;
+  }
+
+  .nav-container {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .hero {
+    padding: 80px 0 var(--spacing-xl);
+  }
+
+  .hero-container {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-lg);
+    line-height: 1.3;
+  }
+
+  .hero-description {
+    font-size: var(--font-size-sm);
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: center;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    min-width: auto;
+  }
+
+  .stat-number {
+    font-size: var(--font-size-xl);
+  }
+
+  .floating-card {
+    display: none;
+  }
+
+  .service-card {
+    padding: var(--spacing-md);
+  }
+
+  .product-categories {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 var(--spacing-xs) var(--spacing-sm);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .product-categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-btn {
+    white-space: nowrap;
+    min-width: fit-content;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-controls {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .testimonial-dots {
+    order: -1;
+  }
+
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-sm);
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: var(--font-size-base);
+  }
+
+  .btn-large {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+  .service-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .service-icon i {
+    font-size: var(--font-size-lg);
+  }
+
+  .nutritionist-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .testimonial-card {
+    padding: var(--spacing-sm);
+  }
+
+  .contact-form {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* Mejoras para imágenes responsivas */
+.hero-image {
+  position: relative;
+  overflow: hidden; /* Importante: evita que las cards se salgan */
+  border-radius: var(--radius-xl);
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  display: block;
+}
+
+.floating-card {
+  position: absolute;
+  background-color: var(--white);
+  padding: var(--spacing-sm) var(--spacing-sm);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  animation: float 3s ease-in-out infinite;
+  white-space: nowrap;
+  z-index: 10;
+  max-width: 180px; /* Limita el ancho máximo */
+}
+
+.floating-card i {
+  color: var(--primary-green);
+  font-size: var(--font-size-sm);
+  flex-shrink: 0;
+}
+
+.card-1 {
+  top: 15%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.card-2 {
+  top: 20%;
+  right: 5%;
+  animation-delay: 1s;
+}
+
+.card-3 {
+  bottom: 15%;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+.nutricionista-img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .nutricionista-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+/* Mejoras para texto responsivo */
+@media (max-width: 768px) {
+  h1 {
+    font-size: var(--font-size-2xl);
+  }
+  h2 {
+    font-size: var(--font-size-xl);
+  }
+  h3 {
+    font-size: var(--font-size-lg);
+  }
+  h4 {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: var(--font-size-xl);
+  }
+  h2 {
+    font-size: var(--font-size-lg);
+  }
+  h3 {
+    font-size: var(--font-size-base);
+  }
+  h4 {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Mejoras para formularios responsivos */
+@media (max-width: 480px) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Mejoras para navegación móvil */
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background-color: var(--white);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl) 0;
+    z-index: 999;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-menu li {
+    margin: var(--spacing-sm) 0;
+  }
+
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .nav-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark-gray);
+    margin: 3px 0;
+    transition: 0.3s;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+}
+
+/* Media queries específicas para floating cards */
+@media (max-width: 1024px) {
+  .floating-card {
+    padding: var(--spacing-sm) var(--spacing-sm);
+    font-size: 0.7rem;
+    max-width: 165px;
+  }
+
+  .card-1 {
+    top: 10%;
+    left: 3%;
+  }
+
+  .card-2 {
+    top: 15%;
+    right: 3%;
+  }
+
+  .card-3 {
+    bottom: 10%;
+    left: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-card {
+    padding: var(--spacing-sm);
+    font-size: 0.6rem;
+    max-width: 145px;
+    gap: var(--spacing-xs);
+  }
+
+  .floating-card i {
+    font-size: var(--font-size-sm);
+  }
+
+  .card-1 {
+    top: 8%;
+    left: 20%;
+  }
+
+  .card-2 {
+    top: 12%;
+    right: 25%;
+  }
+
+  .card-3 {
+    bottom: 8%;
+    left: 35%;
+  }
+}
+
+@media (max-width: 640px) {
+  .floating-card {
+    max-width: 135px;
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-card {
+    display: none; /* Oculta en móviles muy pequeños para evitar sobreposición */
+  }
 }

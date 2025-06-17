@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('', include('listnutricionista.urls')), #Le permitimos saber cuales son las urls de la app main
+    path('listanutricionista/', include('listnutricionista.urls')), #Le permitimos saber cuales son las urls de la app main
     path('mensajes/', include('mensajeria.urls', namespace='mensajeria')),
     path('accounts/', include('django.contrib.auth.urls')),
-
+    path('herramientas/', include('herramientas.urls')) #Le permitimos saber cuales son las urls de la app herramientas
 ]

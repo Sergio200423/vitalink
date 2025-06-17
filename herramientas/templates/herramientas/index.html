@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaLink - Herramientas para Nutricionistas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'herramientas/styles.css'%}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>VitaLink</h1>
+                <span>Herramientas Profesionales</span>
+            </div>
+            <nav class="nav">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#tools" class="nav-link">Herramientas</a>
+                <a href="#clients" class="nav-link">Clientes</a>
+                <a href="#profile" class="nav-link">Perfil</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h2>Bienvenido a tu Panel de Nutricionista</h2>
+                <p>Gestiona tus herramientas profesionales de manera eficiente</p>
+            </section>
+
+            <section class="tools-grid">
+                <!-- Calculadora de IMC -->
+                <div class="tool-card" id="imc-tool">
+                    <div class="tool-header">
+                        <div class="tool-icon">📊</div>
+                        <h3>Calculadora de IMC</h3>
+                    </div>
+                    <div class="tool-content">
+                        <form id="imcForm" action="{% url 'inicio'%}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <label for="peso">Peso (kg)</label>
+                                <input name="peso" type="number" id="peso" placeholder="Ej: 70" step="0.1">
+                            </div>
+                            <div class="input-group">
+                                <label for="altura">Altura (cm)</label>
+                                <input name="altura" type="number" id="altura" placeholder="Ej: 175" step="0.1">
+                            </div>
+                            <button class="btn btn-primary">Calcular IMC</button>
+                            <div id="resultado-imc" class="resultado"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Planes Personalizados -->
+                <div class="tool-card" id="planes-tool">
+                    <div class="tool-header">
+                        <div class="tool-icon">📋</div>
+                        <h3>Planes Personalizados</h3>
+                    </div>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <label for="cliente-nombre">Nombre del Cliente</label>
+                            <input type="text" id="cliente-nombre" placeholder="Nombre completo">
+                        </div>
+                        <div class="input-group">
+                            <label for="objetivo">Objetivo</label>
+                            <select id="objetivo">
+                                <option value="">Seleccionar objetivo</option>
+                                <option value="perdida-peso">Pérdida de peso</option>
+                                <option value="ganancia-masa">Ganancia de masa muscular</option>
+                                <option value="mantenimiento">Mantenimiento</option>
+                                <option value="deportivo">Rendimiento deportivo</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="calorias-diarias">Calorías diarias recomendadas</label>
+                            <input type="number" id="calorias-diarias" placeholder="Ej: 2000">
+                        </div>
+                        <button class="btn btn-secondary" onclick="crearPlan()">Crear Plan</button>
+                        <div id="planes-lista" class="planes-container"></div>
+                    </div>
+                </div>
+
+                <!-- Expedientes de Clientes -->
+                <div class="tool-card" id="expedientes-tool">
+                    <div class="tool-header">
+                        <div class="tool-icon">👥</div>
+                        <h3>Expedientes de Clientes</h3>
+                    </div>
+                    <div class="tool-content">
+                        <div class="expediente-form">
+                            <a href="{% url 'expediente' %}" class="btn btn-accent">Agregar Expediente</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="{% static 'herramientas/script.js'%}"></script>
+</body>
+</html>
