@@ -25,5 +25,6 @@ urlpatterns = [
     path('listanutricionista/', include('listnutricionista.urls')), #Le permitimos saber cuales son las urls de la app main
     path('mensajes/', include('mensajeria.urls', namespace='mensajeria')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('herramientas/', include('herramientas.urls')) #Le permitimos saber cuales son las urls de la app herramientas
+    path('herramientas/', include('herramientas.urls')),
+    path('clientes/', include('clientes.urls')),
 ]

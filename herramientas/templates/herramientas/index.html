@@ -39,7 +39,7 @@
                         <h3>Calculadora de IMC</h3>
                     </div>
                     <div class="tool-content">
-                        <form id="imcForm" action="{% url 'inicio'%}" method="post">
+                        <form id="imcForm" action="{% url 'inicio_herramientas'%}" method="post">
                             {% csrf_token %}
                             <div class="input-group">
                                 <label for="peso">Peso (kg)</label>
