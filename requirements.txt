@@ -1,0 +1,3 @@
+Django>=5.1,<6.0
+# Si usas SQLite, no necesitas agregarlo (viene con Python)
+# Si usas otras dependencias, agrégalas aquí
