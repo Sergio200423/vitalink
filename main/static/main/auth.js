@@ -212,7 +212,7 @@ function handleRegisterSubmit(e) {
 
     setTimeout(() => {
       // Redirect to login page
-      window.location.href = "login.html"
+      window.location.href = "/inicioSesion/"
     }, 2000)
   }, 2500)
 }
